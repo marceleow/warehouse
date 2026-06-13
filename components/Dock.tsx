@@ -1,6 +1,6 @@
 "use client";
 
-import { ArchiveIcon, Home } from "lucide-react";
+import { ArchiveIcon, Home, PackageIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -15,12 +15,19 @@ const menus = [
     label: "Master Data",
     icon: ArchiveIcon,
   },
+  {
+    href: "/more",
+    label: "More",
+    icon: PackageIcon,
+  },
 ];
 
 export default function Dock() {
   const pathname = usePathname();
 
-  const showDock = menus.some((menu) => pathname === menu.href);
+  const showDock = menus.some(
+    (menu) => pathname === menu.href || pathname.startsWith(menu.href + "/"),
+  );
 
   if (!showDock) return null;
 

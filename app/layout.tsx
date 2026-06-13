@@ -2,6 +2,7 @@ import { Toaster } from "#/components/ui/sonner";
 import { cn } from "#/lib/utils";
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import Dock from "#/components/Dock";
 
@@ -27,7 +28,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         {children}
-        <Dock />
+        <Suspense fallback={null}>
+          <Dock />
+        </Suspense>
         <Toaster />
       </body>
     </html>
